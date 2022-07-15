@@ -1,0 +1,14 @@
+#N canvas 261 163 450 319 12;
+#X floatatom 49 17 5 0 0 1 Hz - -;
+#X text 77 73 silence;
+#X text 70 89 sinusoid;
+#X text 56 104 triangular;
+#X text 77 119 ramp-up;
+#X text 63 133 ramp-down;
+#X text 84 148 square;
+#X text 91 163 noise;
+#X obj 49 52 fOs;
+#X obj 48 223 output_;
+#X connect 0 0 8 0;
+#X connect 8 0 9 0;
+#X connect 8 0 9 1;
