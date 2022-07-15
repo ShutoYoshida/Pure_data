@@ -1,0 +1,28 @@
+#N canvas 489 144 835 664 12;
+#X obj 125 44 loadbang;
+#X obj 125 71 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 125 95 t b b b;
+#X obj 46 150 noise~;
+#X obj 47 187 shelf;
+#X obj 320 187 shelf;
+#X msg 125 152 200;
+#X msg 263 154 1000;
+#X obj 399 344 timedisplay;
+#X obj 185 187 peak;
+#X msg 398 154 4000;
+#X obj 320 346 output_;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 6 0;
+#X connect 2 1 7 0;
+#X connect 2 2 10 0;
+#X connect 3 0 4 0;
+#X connect 4 0 9 0;
+#X connect 5 0 8 0;
+#X connect 5 0 11 0;
+#X connect 5 0 11 1;
+#X connect 6 0 4 1;
+#X connect 7 0 9 1;
+#X connect 9 0 5 0;
+#X connect 10 0 5 1;

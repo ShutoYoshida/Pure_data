@@ -1,0 +1,165 @@
+#N canvas 820 11 612 453 10;
+#X floatatom 139 112 5 10 16000 1 Hz - -;
+#X obj 22 24 inlet~;
+#X obj 67 27 inlet;
+#X obj 19 338 outlet~;
+#X floatatom 138 92 5 -20 20 1 dB - -;
+#X obj 288 13 loadbang;
+#X obj 288 34 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 431 79 samplerate~;
+#X floatatom 139 72 5 0.01 100 1 Q - -;
+#X floatatom 254 163 5 0 0 0 - - -;
+#X floatatom 434 103 5 0 0 0 - - -;
+#N canvas 67 4 1171 667 coeff 0;
+#X obj 24 40 inlet K;
+#X floatatom 115 81 5 0 0 0 - - -;
+#X floatatom 41 67 5 0 0 0 - - -;
+#X obj 93 51 inlet Q;
+#X floatatom 208 78 5 0 0 0 - - -;
+#X obj 207 56 inlet Vo;
+#X obj 155 5 bang~;
+#X floatatom 481 106 5 0 0 0 - - -;
+#X floatatom 526 107 5 0 0 0 - - -;
+#X obj 479 23 inlet type;
+#X obj 481 57 expr if($f1==0 \, 1 \, 0) \; if($f1==1 \, 1 \, 0) \;
+if($f1==2 \, 1 \, 0);
+#X floatatom 593 107 5 0 0 0 - - -;
+#X text 129 202 bass;
+#X text 568 208 treble;
+#X obj 321 55 inlet G;
+#X floatatom 123 527 5 0 0 0 - - -;
+#X floatatom 280 533 5 0 0 0 - - -;
+#X floatatom 410 533 5 0 0 0 - - -;
+#X floatatom 597 537 5 0 0 0 - - -;
+#X floatatom 669 540 5 0 0 0 - - -;
+#X obj 110 555 outlet b0;
+#X obj 261 558 outlet b1;
+#X obj 406 556 outlet b2;
+#X obj 591 560 outlet a1;
+#X obj 668 563 outlet a2;
+#X obj 123 226 expr if($f4>=0 \, $f5*(1 + pow($f3 \, 0.5)*$f2*$f1 +
+$f3*pow($f1 \, 2)) / (1 + $f2*$f1 + pow($f1 \, 2)) \, $f5*(1 + $f2*$f1
++ pow($f1 \, 2)) / (1 + $f2*pow($f3 \, .5)*$f1 + $f3*pow($f1 \, 2)))
+\; if($f4>=0 \, $f5*(2 * ($f3*pow($f1 \, 2) - 1) ) / (1 + $f2*$f1 +
+pow($f1 \, 2)) \, $f5*(2 * (pow($f1 \, 2) - 1) ) / (1 + $f2*pow($f3
+\, .5)*$f1 + $f3*pow($f1 \, 2))) \; if($f4>=0 \, $f5*(1 - pow($f3 \,
+0.5)*$f2*$f1 + $f3*pow($f1 \, 2)) / (1 + $f2*$f1 + pow($f1 \, 2)) \,
+$f5*(1 - $f2*$f1 + pow($f1 \, 2)) / (1 + $f2*pow($f3 \, .5)*$f1 + $f3*pow($f1
+\, 2))) \; if($f4>=0 \, $f5*(2 * (pow($f1 \, 2) - 1) ) / (1 + $f2*$f1
++ pow($f1 \, 2)) \, $f5*(2 * ($f3*pow($f1 \, 2) - 1) ) / (1 + $f2*pow($f3
+\, .5)*$f1 + $f3*pow($f1 \, 2))) \; if($f4>=0 \, $f5*(1 - $f2*$f1 +
+pow($f1 \, 2)) / (1 + $f2*$f1 + pow($f1 \, 2)) \, $f5*(1 - $f2*pow($f3
+\, .5)*$f1 + $f3*pow($f1 \, 2)) / (1 + $f2*pow($f3 \, .5)*$f1 + $f3*pow($f1
+\, 2))) \;, f 68;
+#X obj 121 496 expr $f1+$f2+$f3;
+#X obj 268 498 expr $f1+$f2;
+#X obj 405 498 expr $f1+$f2;
+#X obj 569 497 expr $f1+$f2;
+#X obj 675 501 expr $f1+$f2;
+#X floatatom 322 77 5 0 0 0 - - -;
+#X text 16 173 bypass;
+#X obj 573 225 expr if($f4 >=0 \, $f5*($f3 + $f2*pow($f3 \, 0.5)*$f1
++ pow($f1 \, 2)) / (1 + $f2*$f1 + pow($f1 \, 2)) \, $f5*(1 + $f2*$f1
++ pow($f1 \, 2)) / ($f3 + $f2*pow($f3 \, 0.5)*$f1 + pow($f1 \, 2)))
+\; if($f4 >=0 \, $f5*(2 * (pow($f1 \, 2) - $f3) ) / (1 + $f2*$f1 +
+pow($f1 \, 2)) \, $f5*(2 * (pow($f1 \, 2) - 1) ) / ($f3 + $f2*pow($f3
+\, 0.5)*$f1 + pow($f1 \, 2))) \; if($f4 >=0 \, $f5*($f3 - $f2*pow($f3
+\, 0.5)*$f1 + pow($f1 \, 2)) / (1 + $f2*$f1 + pow($f1 \, 2)) \, $f5*(1
+- $f2*$f1 + pow($f1 \, 2)) / ($f3 + $f2*pow($f3 \, 0.5)*$f1 + pow($f1
+\, 2))) \; if($f4 >=0 \, $f5*(2 * (pow($f1 \, 2) - 1) ) / (1 + $f2*$f1
++ pow($f1 \, 2)) \, $f5*(2 * ((pow($f1 \, 2))/$f3 - 1) ) / (1 + $f2/pow($f3
+\, 0.5)*$f1 + (pow($f1 \, 2))/$f3)) \; if($f4 >=0 \, $f5*(1 - $f2*$f1
++ pow($f1 \, 2)) / (1 + $f2*$f1 + pow($f1 \, 2)) \, $f5*(1 - $f2/pow($f3
+\, 0.5)*$f1 + (pow($f1 \, 2))/$f3) / (1 + $f2/pow($f3 \, 0.5)*$f1 +
+(pow($f1 \, 2))/$f3)) \;, f 75;
+#X obj 17 199 expr $f1 \;;
+#X connect 0 0 2 0;
+#X connect 1 0 25 1;
+#X connect 1 0 33 1;
+#X connect 2 0 25 0;
+#X connect 2 0 33 0;
+#X connect 3 0 1 0;
+#X connect 4 0 25 2;
+#X connect 4 0 33 2;
+#X connect 5 0 4 0;
+#X connect 6 0 2 0;
+#X connect 6 0 1 0;
+#X connect 6 0 4 0;
+#X connect 6 0 31 0;
+#X connect 6 0 10 0;
+#X connect 7 0 34 0;
+#X connect 8 0 25 4;
+#X connect 9 0 10 0;
+#X connect 10 0 7 0;
+#X connect 10 1 8 0;
+#X connect 10 2 11 0;
+#X connect 11 0 33 4;
+#X connect 14 0 31 0;
+#X connect 15 0 20 0;
+#X connect 16 0 21 0;
+#X connect 17 0 22 0;
+#X connect 18 0 23 0;
+#X connect 19 0 24 0;
+#X connect 25 0 26 0;
+#X connect 25 1 27 0;
+#X connect 25 2 28 0;
+#X connect 25 3 29 0;
+#X connect 25 4 30 0;
+#X connect 26 0 15 0;
+#X connect 27 0 16 0;
+#X connect 28 0 17 0;
+#X connect 29 0 18 0;
+#X connect 30 0 19 0;
+#X connect 31 0 25 3;
+#X connect 31 0 33 3;
+#X connect 33 0 26 2;
+#X connect 33 1 27 1;
+#X connect 33 2 28 1;
+#X connect 33 3 29 1;
+#X connect 33 4 30 1;
+#X connect 34 0 26 1;
+#X restore 131 238 pd coeff;
+#X f 26;
+#X obj 237 184 expr tan(3.14159265*$f1/$f2);
+#X obj 19 298 fexpr~ $f2*$x1[0] + $f3*$x1[-1] + $f4*$x1[-2] - $f5*$y1[-1]
+- $f6*$y1[-2], f 77;
+#X obj 226 144 expr pow(10 \, abs($f1)/20);
+#X text 372 184 k;
+#X obj 103 133 vradio 15 1 0 3 empty empty empty 0 -8 0 10 -262144
+-1 -1 1;
+#X text 132 148 bass;
+#X text 120 161 treble;
+#X text 120 135 bypass;
+#X obj 218 113 expr 1 / $f1;
+#X obj 288 52 t b b b b;
+#X msg 204 43 3;
+#X msg 303 80 6;
+#X connect 0 0 12 0;
+#X connect 1 0 13 0;
+#X connect 2 0 0 0;
+#X connect 4 0 14 0;
+#X connect 4 0 11 3;
+#X connect 5 0 6 0;
+#X connect 6 0 21 0;
+#X connect 7 0 10 0;
+#X connect 7 0 12 1;
+#X connect 8 0 20 0;
+#X connect 11 0 13 1;
+#X connect 11 1 13 2;
+#X connect 11 2 13 3;
+#X connect 11 3 13 4;
+#X connect 11 4 13 5;
+#X connect 12 0 11 0;
+#X connect 13 0 3 0;
+#X connect 14 0 11 2;
+#X connect 14 0 9 0;
+#X connect 16 0 11 4;
+#X connect 20 0 11 1;
+#X connect 21 0 16 0;
+#X connect 21 1 22 0;
+#X connect 21 2 23 0;
+#X connect 21 3 7 0;
+#X connect 22 0 8 0;
+#X connect 23 0 4 0;
+#X coords 0 -1 1 1 85 130 1 100 50;
